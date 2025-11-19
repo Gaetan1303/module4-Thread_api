@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "dev": "ts-node app.ts",
+    "test:auth": "ts-node test/auth.test.ts"
+  }
+}
