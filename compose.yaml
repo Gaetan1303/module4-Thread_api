@@ -1,0 +1,38 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: threadapi-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Elmimineforever1303
+      MYSQL_DATABASE: threadapi
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pElmimineforever1303"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: .
+    container_name: threadapi-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_NAME: threadapi
+      DB_USER: root
+      DB_PASS: Elmimineforever1303
+      DB_HOST: mysql
+      PORT: 3000
+      JWT_SECRET: 909090990909090909090990909090909090909090909090909090909090
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  mysql_data:

@@ -9,6 +9,7 @@
     "dev": "nodemon app.mjs"
   },
   "devDependencies": {
+    "@tsconfig/node18": "^18.2.6",
     "@types/axios": "^0.9.36",
     "@types/bcrypt": "^6.0.0",
     "@types/cookie-parser": "^1.4.10",
